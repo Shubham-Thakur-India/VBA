@@ -1,0 +1,13 @@
+Public Sub DoFiles()
+    Dim strFileName As String
+    Dim strFolderName As String
+    Dim PP As Presentation
+    FoldertoScan = "C:\Users\Shubham.Thakur\OneDrive - GlobalData PLC\Desktop\New folder"
+    FiletoOpen = Dir(FoldertoScan & "\*.ppt*")
+    Do While Len(FiletoOpen) > 0
+       Set PP = Presentations.Open(FoldertoScan & "\" & FiletoOpen)
+        ActivePresentation.ExportAsFixedFormat ActivePresentation.Path & "\" & Replace(ActivePresentation.Name, ".pptx", "") & ".pdf", ppFixedFormatTypePDF, ppFixedFormatIntentPrint
+        PP.Close
+        strFileName = Dir
+    Loop
+End Sub
